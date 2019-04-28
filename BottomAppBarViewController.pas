@@ -58,9 +58,15 @@ type
       self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(containerScheme);
       MDCBottomAppBarColorThemer.applySurfaceVariantWithSemanticColorScheme(self.colorScheme) toBottomAppBarView(self.bottomBarView);
 
+      self.bottomBarView.floatingButton.addTarget(self) action(selector(didTapFloatingButton:)) forControlEvents(UIControlEvents.UIControlEventTouchUpInside);
+
       self.view.addSubview(bottomBarView);
     end;
 
+    method didTapFloatingButton(sender:id); virtual;
+    begin
+      NSLog('tapped floating button');
+    end;
 
     method layoutBottomAppBar;
     begin
