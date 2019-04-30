@@ -53,7 +53,6 @@ type
       var alwaysImage := imageForFloatingButton.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
       self.bottomBarView.floatingButton.setImage(alwaysImage) forState(UIControlState.Normal);
 
-      self.bottomBarView.floatingButton.setImage(imageForFloatingButton) forState(UIControlState.Normal);
       self.bottomBarView.leadingBarButtonItems := leadingBarButtonItems;
 
       for each barButtonItem in self.bottomBarView.leadingBarButtonItems do
@@ -80,6 +79,7 @@ type
       self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(containerScheme);
       MDCBottomAppBarColorThemer.applySurfaceVariantWithSemanticColorScheme(self.colorScheme) toBottomAppBarView(self.bottomBarView);
 
+      self.bottomBarView.floatingButton.addTarget(self) action(selector(didTapFloatingButton:)) forControlEvents(UIControlEvents.UIControlEventTouchUpInside);
 
       self.view.addSubview(bottomBarView);
     end;
