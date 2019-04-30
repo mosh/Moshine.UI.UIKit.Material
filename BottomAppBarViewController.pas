@@ -50,10 +50,31 @@ type
       bottomBarView := new MDCBottomAppBarView WithFrame(CGRectZero);
       bottomBarView.autoresizingMask := UIViewAutoresizing.FlexibleWidth or UIViewAutoresizing.FlexibleTopMargin;
 
-      self.bottomBarView.floatingButton.setImage(imageForFloatingButton) forState(UIControlState.Normal);
+      var alwaysImage := imageForFloatingButton.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+      self.bottomBarView.floatingButton.setImage(alwaysImage) forState(UIControlState.Normal);
 
       self.bottomBarView.leadingBarButtonItems := leadingBarButtonItems;
+
+      for each barButtonItem in self.bottomBarView.leadingBarButtonItems do
+      begin
+
+        var newImage := barButtonItem.image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+        barButtonItem.image := newImage;
+        barButtonItem.tintColor := selectedColor;
+
+      end;
+
       self.bottomBarView.trailingBarButtonItems := trailingBarButtonItems;
+
+      for each barButtonItem in self.bottomBarView.trailingBarButtonItems do
+      begin
+
+        var newImage := barButtonItem.image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+        barButtonItem.image := newImage;
+        barButtonItem.tintColor := selectedColor;
+
+      end;
+
 
       self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(containerScheme);
       MDCBottomAppBarColorThemer.applySurfaceVariantWithSemanticColorScheme(self.colorScheme) toBottomAppBarView(self.bottomBarView);
@@ -91,8 +112,15 @@ type
       self.layoutBottomAppBar;
     end;
 
+    method viewWillAppear(animated: BOOL); override;
+    begin
+      inherited viewWillAppear(animated);
 
-
+      if(self.navigationController.toolbarHidden = false)then
+      begin
+        self.navigationController.toolbarHidden := true;
+      end;
+    end;
 
   end;
 
