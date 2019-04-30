@@ -50,15 +50,36 @@ type
       bottomBarView := new MDCBottomAppBarView WithFrame(CGRectZero);
       bottomBarView.autoresizingMask := UIViewAutoresizing.FlexibleWidth or UIViewAutoresizing.FlexibleTopMargin;
 
-      self.bottomBarView.floatingButton.setImage(imageForFloatingButton) forState(UIControlState.Normal);
-
-      self.bottomBarView.leadingBarButtonItems := leadingBarButtonItems;
-      self.bottomBarView.trailingBarButtonItems := trailingBarButtonItems;
-
       self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(containerScheme);
       MDCBottomAppBarColorThemer.applySurfaceVariantWithSemanticColorScheme(self.colorScheme) toBottomAppBarView(self.bottomBarView);
 
       self.bottomBarView.floatingButton.addTarget(self) action(selector(didTapFloatingButton:)) forControlEvents(UIControlEvents.UIControlEventTouchUpInside);
+
+      self.bottomBarView.floatingButton.setImage(imageForFloatingButton) forState(UIControlState.Normal);
+      self.bottomBarView.leadingBarButtonItems := leadingBarButtonItems;
+
+      for each item in self.bottomBarView.leadingBarButtonItems do
+      begin
+        item.tintColor := selectedColor;
+      end;
+
+      self.bottomBarView.trailingBarButtonItems := trailingBarButtonItems;
+
+      for each item in self.bottomBarView.trailingBarButtonItems do
+      begin
+        item.tintColor := selectedColor;
+      end;
+
+      self.bottomBarView.tintColor := selectedColor;
+
+
+      //var buttonScheme := new MDCButtonScheme;
+      //buttonScheme.colorScheme := colorScheme;
+      //buttonScheme.typographyScheme := typographyScheme;
+
+     // MDCFloatingActionButtonThemer.applyScheme(buttonScheme) toButton(bottomBarView.floatingButton);
+
+
 
       self.view.addSubview(bottomBarView);
     end;
