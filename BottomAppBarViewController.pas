@@ -29,6 +29,11 @@ type
     method leadingBarButtonItems:NSArray<UIBarButtonItem>; abstract;
     method trailingBarButtonItems:NSArray<UIBarButtonItem>; abstract;
 
+    method uiElementAboveAppBar:UIView; virtual;
+    begin
+      exit nil;
+    end;
+
   public
 
     property bottomBarView:MDCBottomAppBarView;
@@ -130,22 +135,20 @@ type
       end;
     end;
 
-    method uiElementAboveAppBar:UIView; virtual;
-    begin
-      exit nil;
-    end;
-
     method updateViewConstraints; override;
     begin
       if(not assigned(someConstraint))then
       begin
         var someElement := uiElementAboveAppBar;
-        var constant := self.bottomBarView.floatingButton.frame.size.width / 2;
+        if(assigned(someElement))then
+        begin
+          var constant := self.bottomBarView.floatingButton.frame.size.width / 2;
 
-        someConstraint := NSLayoutConstraint.constraintWithItem(someElement) attribute(NSLayoutAttribute.Bottom)
-          relatedBy(NSLayoutRelation.NSLayoutRelationEqual) toItem(self.bottomBarView) attribute(NSLayoutAttribute.Top) multiplier(1) constant(constant);
+          someConstraint := NSLayoutConstraint.constraintWithItem(someElement) attribute(NSLayoutAttribute.Bottom)
+            relatedBy(NSLayoutRelation.NSLayoutRelationEqual) toItem(self.bottomBarView) attribute(NSLayoutAttribute.Top) multiplier(1) constant(constant);
 
-        self.view.addConstraint(someConstraint);
+          self.view.addConstraint(someConstraint);
+        end;
       end;
 
       inherited updateViewConstraints;
