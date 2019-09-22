@@ -11,6 +11,8 @@ type
 
   private
 
+    property someConstraint : NSLayoutConstraint;
+
 
     method containerScheme: MDCContainerScheme;
     begin
@@ -91,10 +93,16 @@ type
 
     method layoutBottomAppBar;
     begin
-      var size: CGSize := bottomBarView.sizeThatFits(self.view.bounds.size);
+      var size := sizeThatFits;
       var bottomBarViewFrame: CGRect := CGRectMake(0, CGRectGetHeight(self.view.bounds) - size.height, size.width, size.height);
       bottomBarView.frame := bottomBarViewFrame;
     end;
+
+    property sizeThatFits:CGSize read
+      begin
+        exit bottomBarView.sizeThatFits(self.view.bounds.size);
+      end;
+
 
     method viewWillLayoutSubviews; override;
     begin
@@ -120,6 +128,27 @@ type
       begin
         self.navigationController.toolbarHidden := true;
       end;
+    end;
+
+    method uiElementAboveAppBar:UIView; virtual;
+    begin
+      exit nil;
+    end;
+
+    method updateViewConstraints; override;
+    begin
+      if(not assigned(someConstraint))then
+      begin
+        var someElement := uiElementAboveAppBar;
+        var constant := self.bottomBarView.floatingButton.frame.size.width / 2;
+
+        someConstraint := NSLayoutConstraint.constraintWithItem(someElement) attribute(NSLayoutAttribute.Bottom)
+          relatedBy(NSLayoutRelation.NSLayoutRelationEqual) toItem(self.bottomBarView) attribute(NSLayoutAttribute.Top) multiplier(1) constant(constant);
+
+        self.view.addConstraint(someConstraint);
+      end;
+
+      inherited updateViewConstraints;
     end;
 
   end;
