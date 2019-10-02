@@ -7,21 +7,12 @@ uses
 
 type
   [IBObject]
-  BottomAppBarViewController = public abstract class(UIViewController)
+  BottomAppBarViewController = public abstract class(UIViewController,IScheme)
 
   private
 
     property someConstraint : NSLayoutConstraint;
 
-
-    method containerScheme: MDCContainerScheme;
-    begin
-
-      var scheme := new MDCContainerScheme;
-      scheme.colorScheme := self.colorScheme;
-      scheme.typographyScheme := self.typographyScheme;
-      exit scheme;
-    end;
 
   protected
     method imageForFloatingButton:UIImage; abstract;
@@ -38,8 +29,6 @@ type
 
     property bottomBarView:MDCBottomAppBarView;
 
-    property typographyScheme:MDCTypographyScheme := new MDCTypographyScheme;
-    property colorScheme:MDCSemanticColorScheme;
 
     method viewDidLoad; override;
     begin
@@ -49,10 +38,6 @@ type
 
     method commonMDCBottomAppBarViewControllerSetup;
     begin
-      colorScheme := new MDCSemanticColorScheme WithDefaults(MDCColorSchemeDefaults.Material201804);
-      colorScheme.primaryColor := UIColor.whiteColor;
-      var selectedColor := UIColor.colorWithRed(0/255.0) green(122/255.0) blue(255/255.0) alpha(1);
-      colorScheme.onPrimaryColor := selectedColor /*UIColor.blackColor*/;
 
       bottomBarView := new MDCBottomAppBarView WithFrame(CGRectZero);
       bottomBarView.autoresizingMask := UIViewAutoresizing.FlexibleWidth or UIViewAutoresizing.FlexibleTopMargin;
@@ -67,7 +52,7 @@ type
 
         var newImage := barButtonItem.image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
         barButtonItem.image := newImage;
-        barButtonItem.tintColor := selectedColor;
+        barButtonItem.tintColor := self.selectedColor;
 
       end;
 
@@ -78,12 +63,12 @@ type
 
         var newImage := barButtonItem.image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
         barButtonItem.image := newImage;
-        barButtonItem.tintColor := selectedColor;
+        barButtonItem.tintColor := self.selectedColor;
 
       end;
 
 
-      self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(containerScheme);
+      self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(self.containerScheme);
       MDCBottomAppBarColorThemer.applySurfaceVariantWithSemanticColorScheme(self.colorScheme) toBottomAppBarView(self.bottomBarView);
 
       self.bottomBarView.floatingButton.addTarget(self) action(selector(didTapFloatingButton:)) forControlEvents(UIControlEvents.UIControlEventTouchUpInside);

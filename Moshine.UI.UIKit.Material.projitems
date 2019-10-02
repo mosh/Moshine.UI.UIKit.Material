@@ -11,5 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BottomNavigationBarViewController.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)BottomAppBarViewController.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)IScheme.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)ISchemeExtensions.pas" />
   </ItemGroup>
 </Project>
