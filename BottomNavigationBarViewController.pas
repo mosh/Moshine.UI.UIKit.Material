@@ -7,7 +7,7 @@ uses
 type
 
   [IBObject]
-  BottomNavigationBarViewController = public abstract class(UIViewController, MDCBottomNavigationBarDelegate)
+  BottomNavigationBarViewController = public abstract class(UIViewController, MDCBottomNavigationBarDelegate,IScheme)
   private
 
     method layoutBottomNavBar;
@@ -46,19 +46,13 @@ type
   public
 
     property bottomNavBar:MDCBottomNavigationBar;
-    property typographyScheme:MDCTypographyScheme := new MDCTypographyScheme;
-    property colorScheme:MDCSemanticColorScheme /*:= new MDCSemanticColorScheme withDefaults(MDCColorSchemeDefaults.MDCColorSchemeDefaultsMaterial201804)*/;
 
     method viewDidLoad; override;
     begin
       inherited viewDidLoad;
 
-      colorScheme :=  new MDCSemanticColorScheme withDefaults(MDCColorSchemeDefaults.Material201804);
-      colorScheme.primaryColor := UIColor.whiteColor;
-      var selectedColor := UIColor.colorWithRed(0/255.0) green(122/255.0) blue(255/255.0) alpha(1);
-      colorScheme.onPrimaryColor := selectedColor /*UIColor.blackColor*/;
-
       createBottomNavBar;
+
       MDCBottomNavigationBarTypographyThemer.applyTypographyScheme(self.typographyScheme) toBottomNavigationBar(self.bottomNavBar);
       MDCBottomNavigationBarColorThemer.applySemanticColorScheme(self.colorScheme) toBottomNavigation(self.bottomNavBar);
 
