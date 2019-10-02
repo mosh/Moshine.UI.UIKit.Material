@@ -28,6 +28,10 @@ type
         var scheme := new MDCSemanticColorScheme WithDefaults(MDCColorSchemeDefaults.Material201804);
         scheme.primaryColor := UIColor.whiteColor;
         scheme.onPrimaryColor := self.selectedColor;
+        scheme.secondaryColor := UIColor.whiteColor;
+        scheme.onSecondaryColor := self.selectedColor;
+        scheme.surfaceColor := UIColor.whiteColor;
+        scheme.onSurfaceColor := self.selectedColor;
         exit scheme;
       end;
 
