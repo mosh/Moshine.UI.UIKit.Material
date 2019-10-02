@@ -51,13 +51,10 @@ type
     begin
       inherited viewDidLoad;
 
-
       createBottomNavBar;
 
-      var value := self.typographyScheme;
-
-      //MDCBottomNavigationBarTypographyThemer.applyTypographyScheme(value) toBottomNavigationBar(self.bottomNavBar);
-      //MDCBottomNavigationBarColorThemer.applySemanticColorScheme(self.colorScheme) toBottomNavigation(self.bottomNavBar);
+      MDCBottomNavigationBarTypographyThemer.applyTypographyScheme(self.typographyScheme) toBottomNavigationBar(self.bottomNavBar);
+      MDCBottomNavigationBarColorThemer.applySemanticColorScheme(self.colorScheme) toBottomNavigation(self.bottomNavBar);
 
     end;
 
