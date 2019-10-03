@@ -13,5 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)BottomAppBarViewController.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)IScheme.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)ISchemeExtensions.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)MaterialExtensions.pas" />
   </ItemGroup>
 </Project>
