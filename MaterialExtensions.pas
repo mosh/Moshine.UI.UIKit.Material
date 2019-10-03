@@ -16,16 +16,11 @@ type
       var someButton := new MDCFloatingButton;
 
       someButton.setImage(addImage) forState(UIControlState.Normal);
-
       someButton.frame := CGRectMake(0, 0, 48, 48);
-
       self.view.addSubview(someButton);
-
-      //method autoPinEdgeToSuperviewEdge(edge: PureLayout.ALEdge) withInset(inset: CGFloat): not nullable NSLayoutConstraint; public;
-
-
       someButton.autoPinEdgeToSuperviewEdge(ALEdge.Bottom) withInset(100);
-      someButton.autoPinEdgeToSuperviewEdge(ALEdge.Right) withInset(100);
+      someButton.autoPinEdgeToSuperviewEdge(ALEdge.Right) withInset(50);
+      //someButton.autoAlignAxisToSuperviewAxis(ALAxis.horizontal);
 
       exit someButton;
 
