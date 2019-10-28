@@ -20,10 +20,7 @@ type
     method leadingBarButtonItems:NSArray<UIBarButtonItem>; abstract;
     method trailingBarButtonItems:NSArray<UIBarButtonItem>; abstract;
 
-    method uiElementAboveAppBar:UIView; virtual;
-    begin
-      exit nil;
-    end;
+    method uiElementAboveAppBar:UIView; abstract;
 
   public
 
