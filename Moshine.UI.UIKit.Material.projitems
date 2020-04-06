@@ -14,5 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IScheme.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)ISchemeExtensions.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)MaterialExtensions.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)MaterialViewController.pas" />
   </ItemGroup>
 </Project>
