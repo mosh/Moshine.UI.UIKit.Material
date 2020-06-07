@@ -2,7 +2,7 @@
 
 uses
   Foundation,
-  MaterialComponentsBeta,
+  //MaterialComponentsBeta,
   MaterialComponents;
 
 type
@@ -35,7 +35,7 @@ type
         exit scheme;
       end;
 
-
+    /*
     property containerScheme: MDCContainerScheme read
       begin
 
@@ -44,6 +44,7 @@ type
         scheme.typographyScheme := self.typographyScheme;
         exit scheme;
       end;
+      */
 
 
   end;

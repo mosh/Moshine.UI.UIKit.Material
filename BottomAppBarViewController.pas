@@ -2,7 +2,7 @@
 
 uses
   MaterialComponents,
-  MaterialComponentsBeta,
+  //MaterialComponentsBeta,
   UIKit;
 
 type
@@ -65,7 +65,7 @@ type
       end;
 
 
-      self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(self.containerScheme);
+      //self.bottomBarView.floatingButton.applySecondaryThemeWithScheme(self.containerScheme);
       MDCBottomAppBarColorThemer.applySurfaceVariantWithSemanticColorScheme(self.colorScheme) toBottomAppBarView(self.bottomBarView);
 
       self.bottomBarView.floatingButton.addTarget(self) action(selector(didTapFloatingButton:)) forControlEvents(UIControlEvents.UIControlEventTouchUpInside);

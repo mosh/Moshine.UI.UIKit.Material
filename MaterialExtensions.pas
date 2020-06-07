@@ -11,7 +11,7 @@ type
 
     method addFloatingButton(imageNamed:String; bottomOffset:Integer := 100; rightOffset:Integer := 50):MDCFloatingButton;
     begin
-      var addImage := UIImage.imageNamed(imageNamed).ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+      var addImage := UIImage.imageNamed(imageNamed).imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
 
       var someButton := new MDCFloatingButton;
 
