@@ -29,6 +29,9 @@
     <RemoteProjectReference Include="github.com/mosh/ImportSolution/MaterialComponents.elements:*">
       <Private>True</Private>
     </RemoteProjectReference>
+    <RemoteProjectReference Include="github.com/mosh/ImportSolution/MaterialComponentsBeta.elements:*">
+      <Private>True</Private>
+    </RemoteProjectReference>
     <RemoteProjectReference Include="github.com/mosh/ImportSolution/PureLayout.elements:*">
       <Private>True</Private>
     </RemoteProjectReference>
