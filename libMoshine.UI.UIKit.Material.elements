@@ -33,9 +33,7 @@
       <Private>True</Private>
     </RemoteProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Library.pas" />
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets" />
   <Import Project="Moshine.UI.UIKit.Material.projitems" Label="Shared" />
   <Import Project="Moshine.UI.UIKit.Material.projitems" Label="Shared" />
