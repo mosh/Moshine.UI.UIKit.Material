@@ -37,7 +37,9 @@ type
     begin
 
       bottomBarView := new MDCBottomAppBarView WithFrame(CGRectZero);
-      bottomBarView.autoresizingMask := UIViewAutoresizing.FlexibleWidth or UIViewAutoresizing.FlexibleTopMargin;
+      var mask := UIViewAutoresizing.FlexibleWidth or UIViewAutoresizing.FlexibleTopMargin;
+      // cast was done to build in Darwin
+      (bottomBarView as UIView).autoresizingMask := mask;
 
       var alwaysImage := imageForFloatingButton.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
       self.bottomBarView.floatingButton.setImage(alwaysImage) forState(UIControlState.Normal);
